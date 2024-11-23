@@ -1,0 +1,20 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: doctorInformation
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: maleisuu@gmail.com
+    password: pasmawhlhkicdmoc
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
