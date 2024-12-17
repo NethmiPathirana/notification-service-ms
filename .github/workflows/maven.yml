@@ -20,20 +20,24 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      # Step 3: Build the project using Maven
+      # Step 3: Run Maven tests
+      - name: Run Maven tests
+        run: mvn test
+
+      # Step 4: Build the project using Maven
       - name: Build with Maven
         run: mvn clean install -DskipTests
 
-      # Step 4: Authenticate Docker to GitHub Container Registry (GHCR)
+      # Step 5: Authenticate Docker to GitHub Container Registry (GHCR)
       - name: Authenticate to GHCR
         run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      # Step 5: Build the Docker image
+      # Step 6: Build the Docker image
       - name: Build Docker image
         run: |
           docker build -t ghcr.io/nethmipathirana/notification-service-ms:latest .
 
-      # Step 6: Check if the JAR file exists in the Docker image
+      # Step 7: Check if the JAR file exists in the Docker image
       - name: Check if JAR file exists in Docker image
         run: |
           # Run the container and check if the JAR file exists in the /app directory
@@ -45,7 +49,7 @@ jobs:
             echo "app.jar found in the Docker image."
           fi
 
-      # Step 7: Push Docker image to GHCR
+      # Step 8: Push Docker image to GHCR
       - name: Push Docker image to GHCR
         run: |
           docker push ghcr.io/nethmipathirana/notification-service-ms:latest
