@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8094
 
 spring:
   application:
@@ -17,4 +17,3 @@ spring:
             enable: true
           ssl:
             trust: smtp.gmail.com
-
